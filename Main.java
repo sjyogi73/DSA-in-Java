@@ -1,46 +1,70 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main {
 
-    private String AppUser = "Admin";
-    private String AppPass = "1234";
+    public static void funcArrayList(){
+        ArrayList<Integer> listNum = new ArrayList<>();
+        System.out.println("Is Empty : " + listNum.isEmpty());
 
-    public boolean UserLogin(){
-        System.out.println("Welcome to Login");
+        for(int i = 0; i <= 4; i++){
+            listNum.add(i+1 * 100);
+        }
+
+        System.out.println("Is Empty : " + listNum.isEmpty());
+
+        System.out.println("add element");
+        listNum.add(0,0);
+        System.out.println(listNum);
+
+        System.out.println("add element by index");
+        listNum.set(1, 201);
+        System.out.println(listNum);
+
+        System.out.println("remove element by index");
+        listNum.remove(5);
+        System.out.println(listNum);
+
+        System.out.println("remove element by value");
+        //listNum.remove(103);
+        System.out.println(listNum);
+
+        System.out.println("Size of List: " + listNum.size());
+
+       System.out.println("Is Contains value '0': " + listNum.contains(0)); 
+
+        System.out.println(listNum);
+        System.out.println(listNum.get(4));
         
-        ArrayList<String> UserList = new ArrayList<String>();
-        UserList = GetUserData();
-        String User = UserList.get(0);
-        String Password = UserList.get(1);
+    }
+
+    public static void funcIterator(){
         
-        if ( User.equals(AppUser) && Password.equals(AppPass) ){
-            return true;
-        }else{
-            return false;
+        ArrayList<Integer> listNum = new ArrayList<>();
+
+        for(int i = 0; i <= 4; i++){
+            listNum.add(i+1 * 100);
+        }
+        Iterator<Integer> itList = listNum.iterator();
+        System.out.println(listNum);
+
+        System.out.println("Is Empty : " + listNum.isEmpty());
+
+        System.out.println("First Element : " + itList.next());
+        System.out.println("Second Element : " + itList.next());
+
+        while (itList.hasNext()) {
+            int num = itList.next();
+            if ( num == 103) {
+                itList.remove();
+            }else{
+                System.out.println(num);
+            }
         }
     }
-    public ArrayList<String> GetUserData(){
-        ArrayList<String> UserList = new ArrayList<String>();
 
-        try (Scanner GetData = new Scanner(System.in)) {
-            //Get User name
-            System.out.println("Enter the user name: ");
-            UserList.add(GetData.nextLine());
-
-            // Get Password
-            System.out.println("Enter the Password: ");
-            UserList.add(GetData.nextLine());
-        }
-        return UserList;
-    }
-
-    public static void main(String[] args) {
-        Main Initial = new Main();
-
-        if (Initial.UserLogin()){
-            System.out.println("Loggin sucess");
-        }else{
-            System.out.println("Invalid username or password");
-        }
+    public static void main(String args[]){
+        //funcArrayList();
+        funcIterator();
     }
 }
